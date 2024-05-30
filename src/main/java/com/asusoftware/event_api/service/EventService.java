@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -22,8 +21,7 @@ import java.util.stream.Collectors;
 @Service
 public class EventService {
 
-    @Value("${external-link.server-mail-url}")
-    private String serverMailUrl;
+
     private final EventRepository eventRepository;
     private final InvitationRepository invitationRepository;
     private final EmailService emailService;

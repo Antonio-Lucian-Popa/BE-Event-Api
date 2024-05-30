@@ -37,3 +37,4 @@ upload:
 external-link:
   #url: "https://socialize-fe.netlify.app/images/"
   url: "http://localhost:8081/images/"
+  server-mail-url: "http://localhost:8081/api/v1/events/confirm"

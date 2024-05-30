@@ -5,6 +5,7 @@ import com.asusoftware.event_api.model.Event;
 import com.asusoftware.event_api.model.Invitation;
 import com.asusoftware.event_api.model.InvitationStatus;
 import com.asusoftware.event_api.model.dto.EventDto;
+import com.asusoftware.event_api.model.dto.InvitationDto;
 import com.asusoftware.event_api.repository.EventRepository;
 import com.asusoftware.event_api.repository.InvitationRepository;
 import jakarta.mail.MessagingException;
@@ -30,7 +31,7 @@ public class EventService {
     public List<EventDto> getAllEvents() {
         List<Event> events = eventRepository.findAll();
         return events.stream()
-                .map(event -> modelMapper.map(event, EventDTO.class))
+                .map(EventDto::toDto)
                 .collect(Collectors.toList());
     }
 
@@ -87,12 +88,12 @@ public class EventService {
         return "Invitation sent to " + email;
     }
 
-    public List<InvitationDTO> getEventInvitations(UUID id) {
+    public List<InvitationDto> getEventInvitations(UUID id) {
         Event event = eventRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Event not found with id: " + id));
         List<Invitation> invitations = event.getInvitations();
         return invitations.stream()
-                .map(invitation -> modelMapper.map(invitation, InvitationDTO.class))
+                .map(InvitationDto::toDto)
                 .collect(Collectors.toList());
     }
 
@@ -109,7 +110,6 @@ public class EventService {
         invitationRepository.save(invitation);
     }
 
-    @Override
     public void rejectInvitation(UUID eventId, UUID invitationId) {
         Event event = eventRepository.findById(eventId)
                 .orElseThrow(() -> new ResourceNotFoundException("Event not found with id: " + eventId));

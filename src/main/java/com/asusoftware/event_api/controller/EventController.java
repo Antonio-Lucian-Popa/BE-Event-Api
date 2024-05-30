@@ -2,6 +2,7 @@ package com.asusoftware.event_api.controller;
 
 import com.asusoftware.event_api.exception.ResourceNotFoundException;
 import com.asusoftware.event_api.model.dto.EventDto;
+import com.asusoftware.event_api.model.dto.InvitationDto;
 import com.asusoftware.event_api.service.EventService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
